@@ -1,0 +1,114 @@
+---
+title: Uploading Music
+description: How to upload and process music files with TrackTag
+---
+
+## File Upload Process
+
+TrackTag supports multiple methods for uploading music files, from single tracks to entire libraries. Our AI processes each file to extract accurate metadata.
+
+<Columns cols={2}>
+  <Card title="Web Upload" icon="upload" href="#">
+    Drag and drop files in your browser.
+  </Card>
+  <Card title="API Upload" icon="code" href="#">
+    Integrate uploads into your applications.
+  </Card>
+</Columns>
+
+## Supported Formats
+
+TrackTag accepts common audio formats without requiring format conversion:
+
+- MP3 (all bitrates)
+- WAV (uncompressed)
+- FLAC (lossless)
+- AAC, M4A
+- OGG
+
+<Callout kind="tip">For best results, upload high-quality source files. Our AI performs better with clearer audio.</Callout>
+
+## Web Interface Upload
+
+<Steps>
+  <Step title="Login" icon="user">
+    Access your TrackTag dashboard.
+  </Step>
+  <Step title="Select Files" icon="folder">
+    Choose individual files or entire folders.
+  </Step>
+  <Step title="Process" icon="play">
+    Click "Process Files" to start AI analysis.
+  </Step>
+  <Step title="Download" icon="download">
+    Get your tagged files when processing completes.
+  </Step>
+</Steps>
+
+## API Upload
+
+Use our REST API to upload files programmatically.
+
+<CodeGroup tabs="cURL,Python">
+  ```bash
+curl -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@track.mp3" \
+  https://api.tracktag.me/v1/uploads
+  ```
+  ```python
+import requests
+
+with open('track.mp3', 'rb') as f:
+    response = requests.post(
+        'https://api.tracktag.me/v1/uploads',
+        headers={'Authorization': 'Bearer YOUR_API_KEY'},
+        files={'file': f}
+    )
+  ```
+</CodeGroup>
+
+## Batch Processing
+
+<Tabs>
+  <Tab title="Large Batches" icon="package">
+    Upload up to 100 files simultaneously for bulk processing.
+  </Tab>
+  <Tab title="Queue Management" icon="list">
+    Monitor processing status in your dashboard.
+  </Tab>
+  <Tab title="Progress Tracking" icon="bar-chart">
+    Real-time updates on processing completion.
+  </Tab>
+</Tabs>
+
+## File Size Limits
+
+| Plan | Individual File | Batch Total |
+|------|-----------------|-------------|
+| Free | 50MB | 200MB |
+| Pro | 100MB | 1GB |
+| Enterprise | 500MB | 10GB |
+
+<Expandable title="File Size Optimization" default-open="false">
+  For large files, consider compressing temporarily or splitting long tracks into segments.
+</Expandable>
+
+<Callout kind="alert">Files exceeding size limits will be rejected. Check your plan limits before uploading.</Callout>
+
+## Processing Time
+
+Processing time depends on file length and complexity:
+
+- Short tracks (< 3 minutes): 10-30 seconds
+- Albums/full sets: 5-15 minutes
+- Large batches: 30+ minutes
+
+<ExpandableGroup>
+  <Expandable title="Processing Webhooks" default-open="false">
+    Set up webhooks to get notified when processing completes.
+  </Expandable>
+  <Expandable title="Error Handling" default-open="false">
+    Handle upload failures gracefully with retry logic.
+  </Expandable>
+</ExpandableGroup>
